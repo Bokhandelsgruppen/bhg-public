@@ -3,7 +3,7 @@
         <server>
             <id>bhg</id>
             <username>${env.ARTIFACTORY_USER}</username>
-            <password>${env.ARTIFACTORY_PASS}</password>
+            <password>${env.ARTIFACTORY_PWD}</password>
         </server>
     </servers>
     <profiles>
