@@ -1,0 +1,30 @@
+<settings>
+    <servers>
+        <server>
+            <id>bhg</id>
+            <username>${env.ARTIFACTORY_USER}</username>
+            <password>${env.ARTIFACTORY_PASS}</password>
+        </server>
+    </servers>
+    <profiles>
+        <profile>
+            <id>bhg</id>
+            <repositories>
+                <repository>
+                    <id>bhg</id>
+                    <url>${env.ARTIFACTORY_URL}/artifactory/libs-release</url>
+                    <snapshots>
+                        <enabled>false</enabled>
+                    </snapshots>
+                </repository>
+                <repository>
+                    <id>snapshots</id>
+                    <url>${env.ARTIFACTORY_URL}/artifactory/libs-snapshot</url>
+                    <releases>
+                        <enabled>false</enabled>
+                    </releases>
+                </repository>
+            </repositories>
+        </profile>
+    </profiles>
+</settings>
