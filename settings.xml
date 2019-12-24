@@ -1,7 +1,12 @@
 <settings>
     <servers>
         <server>
-            <id>bhg</id>
+            <id>bhg-release</id>
+            <username>${env.ARTIFACTORY_USER}</username>
+            <password>${env.ARTIFACTORY_PWD}</password>
+        </server>
+        <server>
+            <id>bhg-snapshot</id>
             <username>${env.ARTIFACTORY_USER}</username>
             <password>${env.ARTIFACTORY_PWD}</password>
         </server>
@@ -9,22 +14,58 @@
     <profiles>
         <profile>
             <id>bhg</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
             <repositories>
                 <repository>
-                    <id>bhg</id>
-                    <url>${env.ARTIFACTORY_URL}libs-release</url>
+                    <id>central-maven</id>
+                    <url>https://repo1.maven.org/maven2</url>
+                    <releases>
+                        <enabled>true</enabled>
+                    </releases>
                     <snapshots>
                         <enabled>false</enabled>
                     </snapshots>
                 </repository>
                 <repository>
-                    <id>snapshots</id>
-                    <url>${env.ARTIFACTORY_URL}libs-snapshot</url>
+                    <id>bhg-release</id>
+                    <url>${env.ARTIFACTORY_URL}/libs-release</url>
+                    <snapshots>
+                        <enabled>false</enabled>
+                    </snapshots>
+                </repository>
+                <repository>
+                    <id>bhg-snapshot</id>
+                    <url>${env.ARTIFACTORY_URL}/libs-snapshot</url>
                     <releases>
                         <enabled>false</enabled>
                     </releases>
                 </repository>
             </repositories>
+            <pluginRepositories>
+                <pluginRepository>
+                    <id>central-maven</id>
+                    <url>https://repo1.maven.org/maven2</url>
+                    <snapshots>
+                        <enabled>false</enabled>
+                    </snapshots>
+                </pluginRepository>
+                <pluginRepository>
+                    <id>bhg-release</id>
+                    <name>libs-release</name>
+                    <snapshots>
+                        <enabled>false</enabled>
+                    </snapshots>
+                    <url>${env.ARTIFACTORY_URL}/libs-release</url>
+                </pluginRepository>
+                <pluginRepository>
+                    <snapshots />
+                    <id>bhg-snapshot</id>
+                    <name>libs-snapshot</name>
+                    <url>${env.ARTIFACTORY_URL}/libs-snapshot</url>
+                </pluginRepository>
+            </pluginRepositories>
         </profile>
     </profiles>
 </settings>
